@@ -27,6 +27,7 @@ public class PersonService {
     }
 
     public List<Person> findAll() {
+        logger.info("Finding all people");
         List<Person> people = new ArrayList<Person>();
         for(int i = 0; i < 10; i++) {
             Person person = mockPerson(i);
@@ -43,5 +44,18 @@ public class PersonService {
         person.setAddress("Leiria" + i);
         person.setGender("Male" + i);
         return person;
+    }
+
+    public Person create(Person person) {
+        logger.info("Creating person with id " + person.getId());
+        return person;
+    }
+
+    public Person update(Person person) {
+        logger.info("Updating person with id " + person.getId());
+        return person;
+    }
+    public void delete(String id) {
+        logger.info("Deleting person with id " + id);
     }
 }
