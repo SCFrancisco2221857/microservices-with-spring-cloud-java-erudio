@@ -55,4 +55,8 @@ public class MathController {
         if (!NumberConverter.isPossibleToSqrt(NumberConverter.converToDouble(number1))) throw new UnsupportedOperationException ("Please provide a positive number");
         return math.sqrt(NumberConverter.converToDouble(number1));
     }
+
+
+
+
 }

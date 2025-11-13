@@ -1,4 +1,6 @@
 spring:
+  main:
+    banner-mode: "off"
   application:
     name: rest-with-spring-boot-and-java-erudio
 
@@ -13,3 +15,13 @@ spring:
       ddl-auto: update
     properties:
       show-sql: false
+    open-in-view: false
+  logging:
+    level:
+      root: WARN # Set the global default to WARN (only WARN, ERROR, FATAL are shown)
+      org.springframework: WARN # Restrict Spring framework logs to WARN and above
+      org.hibernate: WARN # Restrict Hibernate/JPA logs
+      org.apache: WARN # Restrict Apache components logs (e.g., Tomcat, HttpClient)
+      org.thymeleaf: WARN # Restrict Thymeleaf logs, if used
+      com.zaxxer.hikari: WARN #
+     ## com.example.rest_with_spring_boot_and_java_erudio: DEBUG
