@@ -1,2 +1,1 @@
 # microservices-with-spring-cloud-java-erudio
-dckr_pat_iUFDWRRmWsHvNbdHJ7BliSUVQUA
