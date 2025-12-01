@@ -13,31 +13,23 @@
     </parent>
 
     <groupId>br.com.erudio</groupId>
-    <artifactId>exchange-service</artifactId>
+    <artifactId>book-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>exchange-service</name>
+    <name>book-service</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
         <java.version>21</java.version>
+
+        <!-- Spring Cloud 2025.0.0 (Northfields) compatível com Boot 3.5.0 -->
         <spring-cloud.version>2025.0.0</spring-cloud.version>
+
+        <!-- Springdoc para Boot 3.x -->
         <springdoc.version>2.8.9</springdoc.version>
-        <!-- Versão estável do Resilience4j para Spring Boot 3 -->
+
+        <!-- Resilience4j 2.2.0 (evita o bug do RxJava3FallbackDecorator da 2.3.0) -->
         <resilience4j.version>2.2.0</resilience4j.version>
     </properties>
-
-    <!-- Spring Cloud BOM -->
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring-cloud.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
 
     <dependencies>
 
@@ -53,19 +45,13 @@
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
 
-        <!-- ACTUATOR (necessário para métricas/tracing) -->
+        <!-- ACTUATOR (necessário para observability, metrics, tracing, etc.) -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
 
-        <!-- AOP (usado pelo Resilience4j, etc.) -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-aop</artifactId>
-        </dependency>
-
-        <!-- TRACING + ZIPKIN (Micrometer + Brave) -->
+        <!-- MICROMETER TRACING + ZIPKIN (BRAVE) -->
         <dependency>
             <groupId>io.micrometer</groupId>
             <artifactId>micrometer-tracing-bridge-brave</artifactId>
@@ -81,12 +67,13 @@
             <artifactId>zipkin-sender-urlconnection</artifactId>
         </dependency>
 
-        <!-- FEIGN + MÉTRICAS -->
+        <!-- FEIGN -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
 
+        <!-- Métricas para chamadas Feign -->
         <dependency>
             <groupId>io.github.openfeign</groupId>
             <artifactId>feign-micrometer</artifactId>
@@ -122,6 +109,12 @@
             <version>${springdoc.version}</version>
         </dependency>
 
+        <!-- AOP (usado pelo Resilience4j, etc.) -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+
         <!-- RESILIENCE4J PARA SPRING BOOT 3 -->
         <dependency>
             <groupId>io.github.resilience4j</groupId>
@@ -145,6 +138,18 @@
         </dependency>
 
     </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <build>
         <plugins>

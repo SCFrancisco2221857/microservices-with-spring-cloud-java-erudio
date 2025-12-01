@@ -2,12 +2,14 @@ package br.com.erudio;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 
 @SpringBootApplication
-public class ExchangeServiceApplication {
+@EnableEurekaServer
+public class StartUp {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ExchangeServiceApplication.class, args);
+		SpringApplication.run(StartUp.class, args);
 	}
 
 }

@@ -13,17 +13,14 @@
     </parent>
 
     <groupId>br.com.erudio</groupId>
-    <artifactId>exchange-service</artifactId>
+    <artifactId>naming-server</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>exchange-service</name>
+    <name>naming-server</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
         <java.version>21</java.version>
         <spring-cloud.version>2025.0.0</spring-cloud.version>
-        <springdoc.version>2.8.9</springdoc.version>
-        <!-- Versão estável do Resilience4j para Spring Boot 3 -->
-        <resilience4j.version>2.2.0</resilience4j.version>
     </properties>
 
     <!-- Spring Cloud BOM -->
@@ -41,31 +38,19 @@
 
     <dependencies>
 
-        <!-- WEB -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
-        <!-- JPA -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency>
-
-        <!-- ACTUATOR (necessário para métricas/tracing) -->
+        <!-- Actuator para métricas/health/tracing -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
 
-        <!-- AOP (usado pelo Resilience4j, etc.) -->
+        <!-- Eureka Server -->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-aop</artifactId>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
         </dependency>
 
-        <!-- TRACING + ZIPKIN (Micrometer + Brave) -->
+        <!-- Tracing + Zipkin (Micrometer + Brave) -->
         <dependency>
             <groupId>io.micrometer</groupId>
             <artifactId>micrometer-tracing-bridge-brave</artifactId>
@@ -80,56 +65,7 @@
             <groupId>io.zipkin.reporter2</groupId>
             <artifactId>zipkin-sender-urlconnection</artifactId>
         </dependency>
-
-        <!-- FEIGN + MÉTRICAS -->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-openfeign</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>io.github.openfeign</groupId>
-            <artifactId>feign-micrometer</artifactId>
-        </dependency>
-
-        <!-- EUREKA CLIENT -->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-        </dependency>
-
-        <!-- FLYWAY + MYSQL -->
-        <dependency>
-            <groupId>org.flywaydb</groupId>
-            <artifactId>flyway-core</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.flywaydb</groupId>
-            <artifactId>flyway-mysql</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.mysql</groupId>
-            <artifactId>mysql-connector-j</artifactId>
-            <scope>runtime</scope>
-        </dependency>
-
-        <!-- SPRINGDOC / SWAGGER-UI -->
-        <dependency>
-            <groupId>org.springdoc</groupId>
-            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-            <version>${springdoc.version}</version>
-        </dependency>
-
-        <!-- RESILIENCE4J PARA SPRING BOOT 3 -->
-        <dependency>
-            <groupId>io.github.resilience4j</groupId>
-            <artifactId>resilience4j-spring-boot3</artifactId>
-            <version>${resilience4j.version}</version>
-        </dependency>
-
-        <!-- DEVTOOLS -->
+        <!-- Devtools (hot reload em desenvolvimento) -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
@@ -137,7 +73,7 @@
             <optional>true</optional>
         </dependency>
 
-        <!-- TESTES -->
+        <!-- Testes -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -151,14 +87,17 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+
                 <configuration>
                     <image>
                         <name>scfrancisco/${project.artifactId}:${project.version}</name>
                     </image>
                     <pullPolicy>IF_NOT_PRESENT</pullPolicy>
                 </configuration>
+
             </plugin>
         </plugins>
     </build>
+
 
 </project>

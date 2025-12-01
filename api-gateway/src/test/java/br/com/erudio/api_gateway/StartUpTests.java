@@ -1,10 +1,10 @@
-package br.com.erudio;
+package br.com.erudio.api_gateway;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ExchangeServiceApplicationTests {
+class StartUpTests {
 
 	@Test
 	void contextLoads() {
