@@ -28,10 +28,10 @@ jobs:
       run: mvn spring-boot:build-image -DskipTests
     - name: Build Exchange Microservice Docker Image
       working-directory: ./exchange-service
-      run: mvn clean package -DskipTests
+      run: mvn spring-boot:build-image -DskipTests
     - name: Build Book Microservice Docker Image
       working-directory: ./book-service
-      run: mvn clean package -DskipTests
+      run: mvn spring-boot:build-image -DskipTests
     - name: Docker Compose Build
       working-directory: ./
       run: docker compose build
@@ -52,4 +52,4 @@ jobs:
         docker push ${{secrets.DOCKER_USERNAME}}/exchange-service:latest
         docker push ${{secrets.DOCKER_USERNAME}}/exchange-service:${{github.RUN_ID}}
         docker push ${{secrets.DOCKER_USERNAME}}/book-service:latest
-        docker push ${{secrets.DOCKER_USERNAME}}/book-service:${{github.RUN_ID}} 
+        docker push ${{secrets.DOCKER_USERNAME}}/book-service:${{github.RUN_ID}}
