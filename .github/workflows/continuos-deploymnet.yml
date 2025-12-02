@@ -28,10 +28,10 @@ jobs:
       run: mvn spring-boot:build-image -DskipTests
     - name: Build Exchange Microservice Docker Image
       working-directory: ./exchange-service
-      run: mvn clean package
+      run: mvn clean package -DskipTests
     - name: Build Book Microservice Docker Image
       working-directory: ./book-service
-      run: mvn clean package
+      run: mvn clean package -DskipTests
     - name: Docker Compose Build
       working-directory: ./
       run: docker compose build
