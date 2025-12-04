@@ -8,7 +8,7 @@ services:
       - erudio-network
 
   naming-server:
-    image: leandrocgsi/naming-server:latest
+    image: scfrancisco/naming-server:latest
     ports:
       - 8761:8761
     restart: always
@@ -18,7 +18,7 @@ services:
       - erudio-network
   
   api-gateway:
-    image: leandrocgsi/api-gateway:latest
+    image: scfrancisco/api-gateway:latest
     ports:
       - 8765:8765
     restart: always
@@ -60,7 +60,7 @@ services:
       - erudio-network
 
   exchange-service:
-    image: leandrocgsi/exchange-service:latest
+    image: scfrancisco/exchange-service:latest
     restart: always
     environment:
       TZ: America/Sao_Paulo
@@ -79,7 +79,7 @@ services:
       - erudio-network
 
   book-service:
-    image: leandrocgsi/book-service:latest
+    image: scfrancisco/book-service:latest
     restart: always
     environment:
       TZ: America/Sao_Paulo

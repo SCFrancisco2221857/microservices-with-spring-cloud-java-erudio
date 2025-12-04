@@ -17,11 +17,14 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.logging.Logger;
 
 @Tag(name = "Book Endpoint")
 @RestController
 @RequestMapping("book-service")
 public class BookController {
+
+    private Logger logger = LoggerFactory.getLogger(BookController.class);
 
     @Autowired
     private InstanceInformationService informationService;
@@ -39,13 +42,16 @@ public class BookController {
             @PathVariable("currency") String currency
     ){
         String port= informationService.retrieveServerPort();
+        String host= informationService.retrieveInstanceInfo();
         var Book = bookRepository.findById(id).orElseThrow();
+
+        logger.info("Calculating exchange for {} to {}", "USD", currency);
 
 
         Exchange exchange = exchangeProxy.getExchange(Book.getPrice(),"USD", currency);
 
         Book.setCurrency(currency);
-        Book.setEnvironment(" BOOK PORT  " + port  + exchange.getEnviroment());
+        Book.setEnvironment(" BOOK HOST" + host + " PORT" + port + " VERSION: kube-v1 EXCHANGE HOST" + exchange.getEnviroment());
 
         Book.setPrice(exchange.getConvertedValue());
         return Book;
