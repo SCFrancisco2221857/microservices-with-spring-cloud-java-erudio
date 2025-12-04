@@ -1,5 +1,7 @@
 package br.com.erudio.enviroment;
 
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.context.WebServerInitializedEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Service;
