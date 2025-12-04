@@ -14,9 +14,6 @@ services:
       SPRING_DATASOURCE_PASSWORD: admin123
     ports:
       - 8000:8000
-    depends_on:
-
-      - exchange-db
     networks:
       - erudio-network
 
@@ -35,8 +32,6 @@ services:
       SPRING_DATASOURCE_PASSWORD: admin123
     ports:
       - 8100:8100
-    depends_on:
-      - book-db
     networks:
       - erudio-network
 networks:
