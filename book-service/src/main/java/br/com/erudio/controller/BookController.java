@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/book-service")
 public class BookController {
 
-    private static final Logger logger = LoggerFactory.getLogger(BookController.class);
+    private Logger logger = LoggerFactory.getLogger(BookController.class);
 
     @Autowired
     private InstanceInformationService informationService;
