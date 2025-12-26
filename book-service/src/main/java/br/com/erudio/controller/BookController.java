@@ -47,7 +47,7 @@ public class BookController {
         Exchange exchange = exchangeProxy.getExchange(book.getPrice(),"USD", currency);
 
         book.setCurrency(currency);
-        book.setEnvironment(" BOOK HOST" + host + " PORT" + port + " VERSION: kube-v1 EXCHANGE HOST" + exchange.getEnviroment());
+        book.setEnvironment(" BOOK HOST" + host + " PORT" + port + " VERSION: kube-v2 EXCHANGE HOST" + exchange.getEnviroment());
 
         book.setPrice(exchange.getConvertedValue());
         return book;
